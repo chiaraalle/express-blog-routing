@@ -17,10 +17,14 @@ Provare a restituire un singolo post dalla rotta show, sempre in formato json
 const express = require('express') 
 const app = express() 
 const port = 3000 
+const postsRouter = require('./routers/posts'); //Importo il router appena creato
+  
+app.get("/", (req, res) => {
+     res.send(`Hello world`);
+  });
 
-app.get('/', (req, res) => {  
-  res.send('')
-})
+app.use("/posts", postsRouter) //Tramite la funzione use indichiamo a express che esistono nuove rotte, specificando: Quale deve essere il prefisso ("/posts") e quale router utilizzare
+
 app.listen(port, () => {   
     console.log(`Example app listening on port ${port}`)
   })
